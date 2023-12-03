@@ -1,12 +1,12 @@
-use std::fs::read_to_string;
 use std::collections::HashMap;
+use std::fs::read_to_string;
 
 fn main() {
     let lines = read_lines("input");
 
     let mut total = 0;
     for line in &lines {
-        total += parse_part1(&line);
+        total += parse_part1(line);
     }
     println!("part1: {total}");
 
@@ -18,7 +18,7 @@ fn main() {
     println!("part2: {total}");
 }
 
-fn parse_part1(line: &String) -> u32 {
+fn parse_part1(line: &str) -> u32 {
     let v: Vec<&str> = line.matches(char::is_numeric).collect();
     let first: &str = v.first().unwrap();
     let first: u32 = first.parse().unwrap();
@@ -71,18 +71,16 @@ fn parse_part2(line: &String, map: &HashMap<String, u32>) -> u32 {
                 last = *num;
                 last_idx = idx;
             }
-            
         }
     }
     // println!("{}: {}", line, first * 10 + last);
     first * 10 + last
 }
 
-
 fn read_lines(filename: &str) -> Vec<String> {
-    read_to_string(filename) 
-        .unwrap()  // panic on possible file-reading errors
-        .lines()  // split the string into an iterator of string slices
-        .map(String::from)  // make each slice into a string
-        .collect()  // gather them together into a vector
+    read_to_string(filename)
+        .unwrap() // panic on possible file-reading errors
+        .lines() // split the string into an iterator of string slices
+        .map(String::from) // make each slice into a string
+        .collect() // gather them together into a vector
 }

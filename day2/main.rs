@@ -27,10 +27,16 @@ fn main() {
                 let (qty, color) = cube.trim().split_once(' ').unwrap();
                 let qty: u32 = qty.parse().unwrap();
                 match color {
-                    "red" => { red += qty; },
-                    "green" => { green += qty; },
-                    "blue" => { blue += qty; },
-                    _ => {},
+                    "red" => {
+                        red += qty;
+                    }
+                    "green" => {
+                        green += qty;
+                    }
+                    "blue" => {
+                        blue += qty;
+                    }
+                    _ => {}
                 }
             }
             /* part 1 */
