@@ -7,30 +7,23 @@ fn main() {
 
     let nrows = input.len();
     let ncols = input[0].len();
+    let empty_rows: Vec<usize> = (0..nrows)
+        .filter(|i| input[*i].iter().all(|x| *x == '.'))
+        .collect();
+    let empty_cols: Vec<usize> = (0..ncols)
+        .filter(|i| input.iter().map(|x| x[*i]).all(|x| x == '.'))
+        .collect();
 
-    let mut empty_rows: Vec<usize> = vec![];
-    let mut empty_cols: Vec<usize> = vec![];
-
-    for i in 0..nrows {
-        if input[i].iter().all(|x| *x == '.') {
-            empty_rows.push(i);
-        }
-    }
-
-    for i in 0..ncols {
-        if input.iter().map(|x| x[i]).all(|x| x == '.') {
-            empty_cols.push(i);
-        }
-    }
-
-    let mut galaxies: Vec<(usize, usize)> = vec![];
-    for i in 0..nrows {
-        for j in 0..ncols {
-            if input[i][j] == '#' {
-                galaxies.push((i, j));
-            }
-        }
-    }
+    let mut galaxies: Vec<(usize, usize)> = input
+        .iter()
+        .enumerate()
+        .flat_map(|(row_idx, line)| {
+            line.iter()
+                .enumerate()
+                .filter(|(_, ch)| **ch == '#')
+                .map(move |(col_idx, _)| (row_idx, col_idx))
+        })
+        .collect();
 
     // println!("{:?}", empty_rows);
     // println!("{:?}", empty_cols);
