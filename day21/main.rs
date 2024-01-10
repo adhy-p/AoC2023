@@ -95,9 +95,6 @@ fn part2(m: Map) {
     // where K is a constant and N is the length of the grid
     // x + 2KN must be equal to the number of steps we want,
     // thus x must be equal to 26501365 % 2N
-
-    // copied from dhconnelly
-    // https://www.geeksforgeeks.org/lagrange-interpolation-formula/
     let (y1, y2, y3) = (
         m.simulate(65),
         m.simulate(65 + 131),
