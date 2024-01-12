@@ -18,7 +18,7 @@ fn main() {
     println!("{:?}", graph);
 
     // randomly select a start node
-    let start_node = graph.keys().next().unwrap().clone();
+    let start_node = *graph.keys().next().unwrap();
 
     // Stoer-Wagner minimum cut algorithm
     // https://dl.acm.org/doi/pdf/10.1145/263867.263872
@@ -158,6 +158,7 @@ fn merge_vertices<'a>(
     }
 }
 
+#[allow(dead_code)]
 fn gen_test() -> BTreeMap<&'static str, BTreeMap<&'static str, usize>> {
     let mut graph: BTreeMap<&'static str, BTreeMap<&'static str, usize>> = BTreeMap::new();
     let g = [
